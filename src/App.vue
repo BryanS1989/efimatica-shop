@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterView } from 'vue-router';
+import Navbar from './components/shared/navbarMenu.vue';
 </script>
 
 <template>
     <header>
         <h1>Comparador de precios</h1>
-        <div class="wrapper">
-            <nav>
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
-            </nav>
-        </div>
+        <Navbar></Navbar>
     </header>
 
     <RouterView />
