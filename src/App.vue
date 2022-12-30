@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import Navbar from './components/shared/navbarComponent.vue';
+import Header from './components/shared/headerComponent.vue';
 </script>
 
 <template>
-    <header>
-        <h1>Comparador de precios</h1>
-        <Navbar></Navbar>
-    </header>
+    <Header></Header>
 
     <RouterView />
 </template>
