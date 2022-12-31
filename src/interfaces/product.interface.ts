@@ -1,4 +1,4 @@
-export interface List {
+export interface ProductList {
     products: Product[];
     total: number;
     skip: number;
