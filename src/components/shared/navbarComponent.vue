@@ -4,6 +4,6 @@ import { RouterLink } from 'vue-router';
 
 <template>
     <nav>
-        <RouterLink to="/">Products</RouterLink>
+        <RouterLink to="/">{{ $t('navbar.products') }}</RouterLink>
     </nav>
 </template>

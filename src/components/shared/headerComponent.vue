@@ -4,7 +4,7 @@ import Navbar from './navbarComponent.vue';
 
 <template>
     <header>
-        <h1>Comparador de precios</h1>
+        <h1>{{ $t('mainTitle') }}</h1>
         <Navbar></Navbar>
     </header>
 </template>
