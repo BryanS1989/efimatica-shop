@@ -58,7 +58,5 @@ export default defineComponent({
 </script>
 
 <template>
-    <main>
-        <ProductList :products="products" />
-    </main>
+    <ProductList :products="products" />
 </template>
