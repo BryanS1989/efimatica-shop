@@ -2,5 +2,9 @@
     "mainTitle": "Comparador de precios",
     "navbar": {
         "products": "Productos"
+    },
+    "buttons": {
+        "addToCart": "Añadir a la Cesta",
+        "checkout": "Tramitar pedido"
     }
 }

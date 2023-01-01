@@ -2,10 +2,16 @@
     --background-primary-color: #ffffff;
     --background-secondary-color: #f0f0f0;
 
-    --text-color: #000000;
+    --text-color-primary: #000000;
+    --text-color-secondary: #ffffff;
+
+    --text-size-large: 2rem;
+    --text-size-medium: 1.5rem;
 
     --primary-color: #32ac77;
     --secondary-color: #df0000;
+
+    --border-radius-l: 1rem;
 }
 
 *,
@@ -19,7 +25,7 @@
 
 body {
     min-height: 100vh;
-    color: var(--text-color);
+    color: var(--text-color-primary);
     background: var(--background-primary-color);
     line-height: 1.6;
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -27,4 +33,14 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: var(--text-size-large);
+}
+
+h2 {
+    font-weight: bold;
+    font-size: var(--text-size-medium);
 }
