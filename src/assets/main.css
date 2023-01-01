@@ -21,6 +21,24 @@
     justify-content: space-around;
 }
 
+.navbar {
+    padding-top: 1rem;
+    align-items: center;
+}
+
+.navbar__item {
+    width: 33%;
+    text-align: center;
+    position: relative;
+}
+
+.navbar__submenu {
+    position: absolute;
+    background-color: var(--background-primary-color);
+    z-index: 10;
+    width: 100%;
+}
+
 .product__list {
     flex-flow: column wrap;
 }
@@ -97,14 +115,6 @@
 
 .text--underline {
     text-decoration: underline;
-}
-
-a {
-}
-
-@media (hover: hover) {
-    a:hover {
-    }
 }
 
 /* Laptop Medium */

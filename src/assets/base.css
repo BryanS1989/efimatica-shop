@@ -44,3 +44,23 @@ h2 {
     font-weight: bold;
     font-size: var(--text-size-medium);
 }
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (hover: hover) {
+    a:hover {
+        background-color: var(--background-secondary-color);
+    }
+}

@@ -1,7 +1,9 @@
 {
     "mainTitle": "Comparador de precios",
     "navbar": {
-        "products": "Productos"
+        "products": "Productos",
+        "categories": "Categorías",
+        "brands": "Marcas"
     },
     "buttons": {
         "addToCart": "Añadir a la Cesta",
