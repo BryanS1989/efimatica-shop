@@ -39,7 +39,10 @@ export default defineComponent({
         },
         quantityMng(addition: number): void {
             console.log('[ProductItem] [quantityMng()] addition: ', addition);
-            this.cart.quantity += addition;
+            productsStore().modifyProductQuantityFromCart(
+                this.product,
+                addition
+            );
         },
     },
     computed: {
