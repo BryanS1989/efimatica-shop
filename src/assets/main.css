@@ -106,7 +106,7 @@
     width: 2rem;
     height: 2rem;
     position: absolute;
-    top: 0;
+    top: 1rem;
 }
 
 .product__quantity {
@@ -140,6 +140,7 @@
 .quantity__button {
     padding: 0.5rem;
     cursor: pointer;
+    margin: 0.5rem;
 }
 
 .quantity__number {
