@@ -11,7 +11,6 @@ import type { Cart } from '../../interfaces/cart.interface';
 
 export default defineComponent({
     name: 'CartComponent',
-    props: {},
     data() {
         return {
             showCart: false,
