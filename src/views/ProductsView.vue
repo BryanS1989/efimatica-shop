@@ -2,7 +2,7 @@
 import { defineComponent } from 'vue';
 import ProductList from '../components/product/ProductList.vue';
 
-import { Product } from '../../interfaces/product.interface';
+import type { Product } from '../interfaces/product.interface';
 
 export default defineComponent({
     props: {},
