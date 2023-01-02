@@ -5,7 +5,7 @@ import type { PropType } from 'vue';
 import { productsStore } from '../../stores/products';
 
 import type { Product } from '../../interfaces/product.interface';
-import type { Cart } from '../../interfaces/cart.interface';
+import type { ProductQuantity } from '../../interfaces/cart.interface';
 
 export default defineComponent({
     name: 'ProductItem',
@@ -15,9 +15,9 @@ export default defineComponent({
             required: true,
         },
         cart: {
-            type: Object as PropType<Cart>,
+            type: Object as PropType<ProductQuantity>,
             default() {
-                return {};
+                return {} as ProductQuantity;
             },
         },
         type: {

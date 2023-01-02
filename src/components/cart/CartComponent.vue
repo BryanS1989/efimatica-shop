@@ -11,11 +11,10 @@ import type { Cart } from '../../interfaces/cart.interface';
 
 export default defineComponent({
     name: 'CartComponent',
-    props: {},
     data() {
         return {
             showCart: false,
-            cart: {} as PropType<Cart>,
+            cart: {} as Cart,
         };
     },
     components: { ProductList },
@@ -26,7 +25,7 @@ export default defineComponent({
         },
     },
     computed: {
-        total() {
+        total(): String {
             let total = 0;
             this.cart.products.map(
                 (product: Product, index: number) =>
@@ -74,7 +73,7 @@ export default defineComponent({
             </header>
             <ProductList
                 :products="cart.products"
-                :cart="cart.quantities"
+                :cart="cart"
                 :type="'cart'"
                 class="cart__products shadow--inverse"
             />
