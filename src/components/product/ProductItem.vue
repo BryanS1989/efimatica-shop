@@ -3,6 +3,7 @@ import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 
 import type { Product } from '../../interfaces/product.interface';
+import type { Cart } from '../../interfaces/cart.interface';
 
 export default defineComponent({
     name: 'ProductItem',
@@ -11,6 +12,16 @@ export default defineComponent({
             type: Object as PropType<Product>,
             required: true,
         },
+        cart: {
+            type: Object as PropType<Cart>,
+            default() {
+                return {};
+            },
+        },
+        type: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {};
@@ -18,6 +29,25 @@ export default defineComponent({
     methods: {
         addToCart(productId: number): void {
             console.log('[ProductItem] [addToCart()] ProductId: ', productId);
+        },
+        removeItemCart(productId: number): void {
+            console.log(
+                '[ProductItem] [removeItemCart()] ProductId: ',
+                productId
+            );
+        },
+        quantityMng(addition: number): void {
+            console.log('[ProductItem] [quantityMng()] addition: ', addition);
+            this.cart.quantity += addition;
+        },
+    },
+    computed: {
+        price(): number {
+            if (this.type === 'cart') {
+                return this.product.price * this.cart.quantity;
+            } else {
+                return this.product.price;
+            }
         },
     },
     mounted() {},
@@ -37,20 +67,55 @@ export default defineComponent({
                 <h2 class="product__title text--underline">
                     {{ product.title }}
                 </h2>
-                <h3 class="product__rating">{{ product.rating }}</h3>
+                <h3
+                    v-if="type !== 'cart'"
+                    class="product__rating"
+                >
+                    {{ product.rating }}
+                </h3>
             </header>
 
             <p class="product__description">{{ product.description }}</p>
 
-            <p class="product__price text--medium text--bold">
-                {{ product.price }} €
-            </p>
+            <p class="product__price text--medium text--bold">{{ price }} €</p>
 
             <button
+                v-if="type !== 'cart'"
                 class="product__button button button--primary"
                 @click="addToCart(product.id)"
             >
                 {{ $t('buttons.addToCart') }}
+            </button>
+
+            <div
+                v-if="type === 'cart'"
+                class="product__quantity flex"
+            >
+                <font-awesome-icon
+                    icon="fa-solid fa-minus"
+                    class="fa-lg quantity__button quantity__plus circle shadow"
+                    @click="quantityMng(-1)"
+                />
+                <input
+                    type="number"
+                    class="quantity__number"
+                    v-model="cart.quantity"
+                />
+                <font-awesome-icon
+                    icon="fa-solid fa-plus"
+                    class="fa-lg quantity__button quantity__minus circle shadow"
+                    @click="quantityMng(+1)"
+                />
+            </div>
+            <button
+                v-if="type === 'cart'"
+                class="product__delete button button--secondary circle"
+                @click="removeItemCart(product.id)"
+            >
+                <font-awesome-icon
+                    icon="fa-solid fa-trash"
+                    class="fa-lg"
+                />
             </button>
         </section>
     </article>
