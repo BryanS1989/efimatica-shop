@@ -5,9 +5,6 @@ import Navbar from './navbarComponent.vue';
 <template>
     <header>
         <h1>{{ $t('mainTitle') }}</h1>
-        <Navbar
-            :categories="['home-decoration', 'groceries', 'skincare']"
-            :brands="['Samsung', 'Apple']"
-        ></Navbar>
+        <Navbar></Navbar>
     </header>
 </template>

@@ -1,23 +1,24 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import { productsStore } from '../../stores/products';
+
 export default defineComponent({
     name: 'NavbarComponent',
-    props: {
-        categories: {
-            type: Array,
-            required: true,
-        },
-        brands: {
-            type: Array,
-            required: true,
-        },
-    },
+    props: {},
     data() {
         return {
             showCategories: false,
             showBrands: false,
         };
+    },
+    computed: {
+        categories() {
+            return productsStore().categories;
+        },
+        brands() {
+            return productsStore().brands;
+        },
     },
     methods: {
         toggle(navbarElement: string): void {

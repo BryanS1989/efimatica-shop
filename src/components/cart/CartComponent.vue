@@ -1,5 +1,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
+
+import { productsStore } from '../../stores/products';
+
 import ProductList from '../product/ProductList.vue';
 
 import type { Product } from '../../interfaces/product.interface';
@@ -11,82 +15,7 @@ export default defineComponent({
     data() {
         return {
             showCart: false,
-            products: [
-                {
-                    id: 1,
-                    title: 'iPhone 9',
-                    description: 'An apple mobile which is nothing like apple',
-                    price: 549,
-                    discountPercentage: 12.96,
-                    rating: 4.69,
-                    stock: 94,
-                    brand: 'Apple',
-                    category: 'smartphones',
-                    thumbnail:
-                        'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-                    images: [
-                        'https://i.dummyjson.com/data/products/1/1.jpg',
-                        'https://i.dummyjson.com/data/products/1/2.jpg',
-                        'https://i.dummyjson.com/data/products/1/3.jpg',
-                        'https://i.dummyjson.com/data/products/1/4.jpg',
-                        'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-                    ],
-                },
-                {
-                    id: 2,
-                    title: 'iPhone X',
-                    description:
-                        'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...',
-                    price: 899,
-                    discountPercentage: 17.94,
-                    rating: 4.44,
-                    stock: 34,
-                    brand: 'Apple',
-                    category: 'smartphones',
-                    thumbnail:
-                        'https://i.dummyjson.com/data/products/2/thumbnail.jpg',
-                    images: [
-                        'https://i.dummyjson.com/data/products/2/1.jpg',
-                        'https://i.dummyjson.com/data/products/2/2.jpg',
-                        'https://i.dummyjson.com/data/products/2/3.jpg',
-                        'https://i.dummyjson.com/data/products/2/thumbnail.jpg',
-                    ],
-                },
-                {
-                    id: 3,
-                    title: 'iPhone X',
-                    description:
-                        'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...',
-                    price: 899,
-                    discountPercentage: 17.94,
-                    rating: 4.44,
-                    stock: 34,
-                    brand: 'Apple',
-                    category: 'smartphones',
-                    thumbnail:
-                        'https://i.dummyjson.com/data/products/2/thumbnail.jpg',
-                    images: [
-                        'https://i.dummyjson.com/data/products/2/1.jpg',
-                        'https://i.dummyjson.com/data/products/2/2.jpg',
-                        'https://i.dummyjson.com/data/products/2/3.jpg',
-                        'https://i.dummyjson.com/data/products/2/thumbnail.jpg',
-                    ],
-                },
-            ] as Product[],
-            cart: [
-                {
-                    id: 1,
-                    quantity: 2,
-                },
-                {
-                    id: 2,
-                    quantity: 1,
-                },
-                {
-                    id: 3,
-                    quantity: 5,
-                },
-            ] as Cart[],
+            cart: {} as PropType<Cart>,
         };
     },
     components: { ProductList },
@@ -99,13 +28,18 @@ export default defineComponent({
     computed: {
         total() {
             let total = 0;
-            this.products.map(
-                (product, index) =>
-                    (total += product.price * this.cart[index].quantity)
+            this.cart.products.map(
+                (product: Product, index: number) =>
+                    (total +=
+                        product.price * this.cart.quantities[index].quantity)
             );
 
             return total.toFixed(2);
         },
+    },
+    beforeMount() {
+        console.log('[CartComponent] [beforeMount()]');
+        this.cart = productsStore().cart;
     },
     mounted() {},
 });
@@ -130,7 +64,7 @@ export default defineComponent({
                     {{ $t('cart.title') }}
                 </h2>
                 <h3>
-                    {{ $t('cart.subtitle', { count: products.length }) }}
+                    {{ $t('cart.subtitle', { count: cart.products.length }) }}
                 </h3>
                 <font-awesome-icon
                     icon="fa-solid fa-x"
@@ -139,8 +73,8 @@ export default defineComponent({
                 />
             </header>
             <ProductList
-                :products="products"
-                :cart="cart"
+                :products="cart.products"
+                :cart="cart.quantities"
                 :type="'cart'"
                 class="cart__products shadow--inverse"
             />

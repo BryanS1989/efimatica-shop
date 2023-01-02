@@ -2,6 +2,8 @@
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 
+import { productsStore } from '../../stores/products';
+
 import type { Product } from '../../interfaces/product.interface';
 import type { Cart } from '../../interfaces/cart.interface';
 
@@ -27,14 +29,13 @@ export default defineComponent({
         return {};
     },
     methods: {
-        addToCart(productId: number): void {
-            console.log('[ProductItem] [addToCart()] ProductId: ', productId);
+        addToCart(): void {
+            console.log('[ProductItem] [addToCart()]');
+            productsStore().addProductToCart(this.product);
         },
-        removeItemCart(productId: number): void {
-            console.log(
-                '[ProductItem] [removeItemCart()] ProductId: ',
-                productId
-            );
+        removeItemCart(): void {
+            console.log('[ProductItem] [removeItemCart()] ProductId: ');
+            productsStore().deleteProductFromCart(this.product);
         },
         quantityMng(addition: number): void {
             console.log('[ProductItem] [quantityMng()] addition: ', addition);
@@ -82,7 +83,7 @@ export default defineComponent({
             <button
                 v-if="type !== 'cart'"
                 class="product__button button button--primary"
-                @click="addToCart(product.id)"
+                @click="addToCart()"
             >
                 {{ $t('buttons.addToCart') }}
             </button>
@@ -94,7 +95,7 @@ export default defineComponent({
                 <button
                     class="quantity__button quantity__plus circle"
                     @click="quantityMng(-1)"
-                    :disabled="cart.quantity <= 0"
+                    :disabled="cart.quantity <= 1"
                 >
                     <font-awesome-icon
                         icon="fa-solid fa-minus"
@@ -120,7 +121,7 @@ export default defineComponent({
             <button
                 v-if="type === 'cart'"
                 class="product__delete button button--secondary circle"
-                @click="removeItemCart(product.id)"
+                @click="removeItemCart()"
             >
                 <font-awesome-icon
                     icon="fa-solid fa-trash"
