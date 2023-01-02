@@ -60,7 +60,7 @@ export const productsStore = defineStore('products', {
             });
         },
         addProductToCart(product: Product): void {
-            console.log('[store] [actions] [addProductToCart()] productId: ', productId);
+            console.log('[store] [actions] [addProductToCart()] product: ', product);
 
             const index = this.getCartProductIndex(product.id);
             if (index !== -1) {
@@ -71,10 +71,15 @@ export const productsStore = defineStore('products', {
             }
         },
         deleteProductFromCart(product: Product): void {
-            console.log('[store] [actions] [deleteProductFromCart()] productId: ', productId);
+            console.log('[store] [actions] [deleteProductFromCart()] product: ', product);
             const index = this.getCartProductIndex(product.id);
             this.cart.products.splice(index, 1);
             this.cart.quantities.splice(index, 1);
+        },
+        modifyProductQuantityFromCart(product: Product, quantity: Number): void {
+            console.log('[store] [actions] [modifyProductQuantityFromCart()] product: ', product, ' quantity: ', quantity);
+            const index = this.getCartProductIndex(product.id);
+            this.cart.quantities[index].quantity += quantity;
         },
     },
 });
