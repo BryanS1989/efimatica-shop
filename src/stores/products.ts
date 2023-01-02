@@ -8,8 +8,8 @@ import type { Cart } from '../interfaces/cart.interface';
 
 export const productsStore = defineStore('products', {
     state: () => ({
-        productsList: {} as PropType<ProductList>,
-        cart: { products: [], quantities: [] } as PropType<Cart>,
+        productsList: {} as ProductList,
+        cart: { products: [], quantities: [] } as Cart,
         loading: false,
     }),
     getters: {
@@ -53,7 +53,7 @@ export const productsStore = defineStore('products', {
                     this.loading = false;
                 });
         },
-        getCartProductIndex(productId: Number): Number {
+        getCartProductIndex(productId: number): number {
             console.log(
                 '[store] [actions] [getCartProductIndex()] productId: ',
                 productId
@@ -68,7 +68,7 @@ export const productsStore = defineStore('products', {
                 product
             );
 
-            const index = this.getCartProductIndex(product.id);
+            const index: number = this.getCartProductIndex(product.id);
             if (index !== -1) {
                 this.cart.quantities[index].quantity += 1;
             } else {
@@ -81,13 +81,13 @@ export const productsStore = defineStore('products', {
                 '[store] [actions] [deleteProductFromCart()] product: ',
                 product
             );
-            const index = this.getCartProductIndex(product.id);
+            const index: number = this.getCartProductIndex(product.id);
             this.cart.products.splice(index, 1);
             this.cart.quantities.splice(index, 1);
         },
         modifyProductQuantityFromCart(
             product: Product,
-            quantity: Number
+            quantity: number
         ): void {
             console.log(
                 '[store] [actions] [modifyProductQuantityFromCart()] product: ',

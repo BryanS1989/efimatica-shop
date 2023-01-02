@@ -1,5 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
+
 import ProductItem from './ProductItem.vue';
 
 import type { Product } from '../../interfaces/product.interface';
@@ -14,9 +16,12 @@ export default defineComponent({
             },
         },
         cart: {
-            type: Array<Cart>,
+            type: Object as PropType<Cart>,
             default() {
-                return [];
+                return {
+                    products: [],
+                    quantities: [],
+                } as Cart;
             },
         },
         type: {
@@ -38,7 +43,7 @@ export default defineComponent({
             v-for="(product, index) of products"
             :key="product.id"
             :product="product"
-            :cart="cart[index]"
+            :cart="cart.quantities[index]"
             :type="type"
         ></ProductItem>
     </article>
