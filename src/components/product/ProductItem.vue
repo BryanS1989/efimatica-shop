@@ -91,21 +91,31 @@ export default defineComponent({
                 v-if="type === 'cart'"
                 class="product__quantity flex"
             >
-                <font-awesome-icon
-                    icon="fa-solid fa-minus"
-                    class="fa-lg quantity__button quantity__plus circle shadow"
+                <button
+                    class="quantity__button quantity__plus circle"
                     @click="quantityMng(-1)"
-                />
+                    :disabled="cart.quantity <= 0"
+                >
+                    <font-awesome-icon
+                        icon="fa-solid fa-minus"
+                        class="fa-lg"
+                    />
+                </button>
+
                 <input
                     type="number"
                     class="quantity__number"
                     v-model="cart.quantity"
                 />
-                <font-awesome-icon
-                    icon="fa-solid fa-plus"
-                    class="fa-lg quantity__button quantity__minus circle shadow"
+                <button
+                    class="quantity__button quantity__minus circle"
                     @click="quantityMng(+1)"
-                />
+                >
+                    <font-awesome-icon
+                        icon="fa-solid fa-plus"
+                        class="fa-lg"
+                    />
+                </button>
             </div>
             <button
                 v-if="type === 'cart'"
