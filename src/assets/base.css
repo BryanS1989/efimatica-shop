@@ -2,10 +2,19 @@
     --background-primary-color: #ffffff;
     --background-secondary-color: #f0f0f0;
 
-    --text-color: #000000;
+    --background-backdrop-color: #cbcbcb78;
+
+    --text-color-primary: #000000;
+    --text-color-secondary: #ffffff;
+
+    --text-size-large: 2rem;
+    --text-size-medium: 1.5rem;
 
     --primary-color: #32ac77;
     --secondary-color: #df0000;
+
+    --border-radius-l: 1rem;
+    --border-radius-m: 0.5rem;
 }
 
 *,
@@ -19,7 +28,7 @@
 
 body {
     min-height: 100vh;
-    color: var(--text-color);
+    color: var(--text-color-primary);
     background: var(--background-primary-color);
     line-height: 1.6;
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -27,4 +36,93 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+aside {
+    position: fixed;
+    width: 70vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    padding: 2rem;
+    background: var(--background-primary-color);
+    overflow-y: auto;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: var(--text-size-large);
+}
+
+h2 {
+    font-weight: bold;
+    font-size: var(--text-size-medium);
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+@media (hover: hover) {
+    a:hover {
+        background-color: var(--background-secondary-color);
+    }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
+}
+
+/* Mobile Large */
+@media (max-width: 425px) {
+    aside {
+        width: 100vw;
+        padding: 1rem;
+    }
 }
