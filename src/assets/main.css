@@ -14,11 +14,26 @@
     border-radius: var(--border-radius-l);
 }
 
+.shadow--inverse {
+    border-radius: var(--border-radius-l);
+    box-shadow: inset 10px 10px 20px var(--background-secondary-color),
+        inset -10px -10px 20px var(--background-primary-color);
+}
+
 .flex {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    justify-content: space-around;
+}
+
+.backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: var(--background-backdrop-color);
 }
 
 .navbar {
@@ -40,7 +55,7 @@
 }
 
 .product__list {
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
 }
 
 .product__item {
@@ -87,8 +102,74 @@
     padding: 0 1rem;
 }
 
+.product__delete {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 1rem;
+}
+
+.product__quantity {
+    width: 100%;
+    justify-content: center;
+}
+
+.cart__products {
+    max-height: 70%;
+    overflow-y: auto;
+}
+
+.cart__total {
+    width: 100%;
+    padding: 2rem;
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cart__button {
+    width: 100%;
+    padding: 2rem;
+}
+
+.circle {
+    border-radius: 100%;
+    border: 0;
+}
+
+.quantity__button {
+    padding: 0.5rem;
+    cursor: pointer;
+    margin: 0.5rem;
+}
+
+.quantity__number {
+    text-align: center;
+    border-radius: var(--border-radius-l);
+    padding: 0.2rem;
+    width: 50%;
+    font-size: 1rem;
+}
+
+.button__cart {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 30;
+    border: 1px solid var(--background-primary-color);
+    width: 5rem;
+    height: 5rem;
+}
+
+.button__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
 .button {
     cursor: pointer;
+    border: 0;
 }
 
 .button--primary {
@@ -115,6 +196,14 @@
 
 .text--underline {
     text-decoration: underline;
+}
+
+.text--left {
+    text-align: left;
+}
+
+.text--right {
+    text-align: right;
 }
 
 /* Laptop Medium */
@@ -165,5 +254,11 @@
         border-top-left-radius: var(--border-radius-l);
         border-top-right-radius: var(--border-radius-l);
         border-bottom-left-radius: 0;
+    }
+
+    .button__cart {
+        bottom: 1rem;
+        top: unset;
+        left: unset;
     }
 }
