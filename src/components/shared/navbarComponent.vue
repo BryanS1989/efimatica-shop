@@ -5,7 +5,6 @@ import { productsStore } from '../../stores/products';
 
 export default defineComponent({
     name: 'NavbarComponent',
-    props: {},
     data() {
         return {
             showCategories: false,
