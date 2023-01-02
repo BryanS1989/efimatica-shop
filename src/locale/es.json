@@ -5,6 +5,12 @@
         "categories": "Categorías",
         "brands": "Marcas"
     },
+    "cart": {
+        "title": "Carrito",
+        "subtitle": "{count} productos",
+        "subtotal": "Subtotal",
+        "total": "Total"
+    },
     "buttons": {
         "addToCart": "Añadir a la Cesta",
         "checkout": "Tramitar pedido"
